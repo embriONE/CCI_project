@@ -1,0 +1,47 @@
+.inst-post {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+
+.post-meta {
+   background: #ffff;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+  border: 1px solid #a1a1a1;
+
+  img {
+    margin-right: 10px;
+  }
+}
+
+.post-details {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #a1a1a1;
+}
+
+.post-actions {
+margin-bottom: 15px;
+  i {
+    margin-right: 10px;
+    color: #ddd;
+    cursor: pointer;
+  }
+
+  i:hover {
+    color: #999;
+
+  }
+
+  .comment-box {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #a1a1a1;
+  }
+
+  .post-comment:focus {
+
+  }
+}

@@ -1,0 +1,64 @@
+<head>
+  <script src="https://kit.fontawesome.com/90b584e3b1.js" crossorigin="anonymous"></script>
+</head>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <% @post.each do |post| %>
+        <div class="inst-post">
+          <div class="post-meta">
+            <%= link_to image_tag(post.image.derivation_url(:thumbnail, 50, 50), class: "img-circle"), profile_path(post.account.username) %>
+            <%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %>
+          </div>
+
+
+          <%= image_tag post.image.url, class: "img img-fluid" %>
+
+
+
+          <div class="post-details">
+            <div class="post-actions">
+              <i class="fa fa-thumbs-up fa-2x post-like"></i>
+              <i class="fa fa-comment fa-2x post-comment"></i>
+            </div>
+            <p><strong><%= post.total_likes %> likes</strong></p>
+            <p>
+              <strong><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong>
+            </p>
+            <%= simple_format post.description %>
+            <p class="text-muted"><%= time_ago_in_words post.created_at %> ago</p>
+
+
+            <%= render "posts/comments", post: post %>
+          </div>
+          <div class="comment-box">
+            <%= form_for @comment do |f| %>
+              <%= f.hidden_field :post_id, value: post.id %>
+              <div class="input-group">
+                <%= f.text_field :comment, placeholder: "Add your necessary opinion here...", class: "form-control post-comment" %>
+                <div class="input-group-append">
+                  <%= f.submit "Post", class: "btn btn-success float-end" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <div class="account-summary">
+        <p>
+          <%= link_to (image_tag current_account.image.derivation_url(:thumbnail, 50, 50), class: "img-circle"), profile_path(current_account.username) if current_account.image.present? %>
+          <strong><%= link_to current_account.username, profile_path(current_account.username) %></strong></p>
+
+        <p><em><%= current_account.full_name %></em></p>
+      </div>
+      <div class="follower-suggestion">
+        <%= link_to "View all", "#", class: "float-end" %>
+        <p class="text-muted">Suggestions for you:</p>
+        <%= render "accounts/follower_suggestions" %>
+
+      </div>
+    </div>
+  </div>
+</div>
