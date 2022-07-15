@@ -17,11 +17,16 @@
 
 
           <div class="post-details">
-            <div class="post-actions">
-              <i class="fa fa-thumbs-up fa-2x post-like"></i>
-              <i class="fa fa-comment fa-2x post-comment"></i>
-            </div>
-            <p><strong><%= post.total_likes %> likes</strong></p>
+
+            <% pre_like = post.likes.find { |like| like.account_id == current_account.id} %>
+            <% if pre_like %>
+              <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+            <% else %>
+              <%= button_to 'Like', post_likes_path(post), method: :post %>
+            <% end %>
+
+
+            <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
             <p>
               <strong><%= link_to post.account.username, profile_path(post.account.username), class: "text-dark" %></strong>
             </p>

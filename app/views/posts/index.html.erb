@@ -8,7 +8,11 @@
     <p>
       <%= link_to "Show this post", post %>
     </p>
+
+    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
   <% end %>
 </div>
+
+
 
 <%= link_to "New post", new_post_path %>

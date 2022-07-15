@@ -17,6 +17,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    @post = Post.all.find(params)
+    Like.create(account_id: current_account.id, post_id: @post.id)
+    redirect_to post_path(@post)
+  end
+
   def show
   end
 

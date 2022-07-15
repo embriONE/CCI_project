@@ -7,7 +7,7 @@ class Account < ApplicationRecord
   include ImageUploader::Attachment.new(:image)
 
   has_many :posts
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :followers
 
   def full_name
